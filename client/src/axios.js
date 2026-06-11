@@ -1,7 +1,8 @@
 import axios from "axios";
+import { ECOM_API_BASE_URL } from "./config/api";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/api/ecom",
+  baseURL: ECOM_API_BASE_URL,
 });
 
 export default instance;

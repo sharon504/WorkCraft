@@ -80,8 +80,9 @@ const login = asyncErrorHandler(async (req, res) => {
       .status(200)
       .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpsOnly: true,
-        sameSite: "strict",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       })
       .json({
         message: `Welcome back ${user.fullname}`,
@@ -94,7 +95,12 @@ const login = asyncErrorHandler(async (req, res) => {
 });
 const logout = asyncErrorHandler(async (req, res) => {
   try {
-    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+    return res.status(200).cookie("token", "", {
+      maxAge: 0,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    }).json({
       message: "Logged out successfully.",
       success: true,
     });

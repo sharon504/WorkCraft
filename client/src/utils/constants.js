@@ -1,8 +1,8 @@
-export const USER_API_END_POINT = "http://localhost:3000/api/jobPortal/user";
-export const JOB_API_END_POINT = "http://localhost:3000/api/jobPortal/job";
-export const APPLICATION_API_END_POINT =
-  "http://localhost:3000/api/jobPortal/application";
-export const COMPANY_API_END_POINT =
-  "http://localhost:3000/api/jobPortal/company";
-export const MARKET_ANALYSIS_API_END_POINT = "http://localhost:5000/api";
+import { JOB_PORTAL_API_BASE_URL, ML_API_BASE_URL } from "../config/api";
 
+export const USER_API_END_POINT = `${JOB_PORTAL_API_BASE_URL}/user`;
+export const JOB_API_END_POINT = `${JOB_PORTAL_API_BASE_URL}/job`;
+export const APPLICATION_API_END_POINT =
+  `${JOB_PORTAL_API_BASE_URL}/application`;
+export const COMPANY_API_END_POINT = `${JOB_PORTAL_API_BASE_URL}/company`;
+export const MARKET_ANALYSIS_API_END_POINT = ML_API_BASE_URL;

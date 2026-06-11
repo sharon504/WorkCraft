@@ -21,13 +21,25 @@ import { errorHandler } from "#ecommerece/middlewares";
 
 const ROUTE_PREFIX = "/api";
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+  ...(process.env.CORS_ORIGINS?.split(",") || []),
+].filter(Boolean);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   }),
 );

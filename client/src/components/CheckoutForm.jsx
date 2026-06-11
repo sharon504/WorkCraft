@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ECOM_API_BASE_URL } from "../config/api";
 import { useCreateOrderMutation } from "../redux/services-mp/appApi";
 
 function CheckoutForm() {
@@ -22,7 +23,7 @@ function CheckoutForm() {
     if (!stripe || !elements || user.cart.count <= 0) return;
     setPaying(true);
     const { client_secret } = await fetch(
-      "http://localhost:3000/api/ecom/orders/create-payment",
+      `${ECOM_API_BASE_URL}/orders/create-payment`,
       {
         method: "POST",
         headers: {

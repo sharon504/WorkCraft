@@ -27,6 +27,8 @@ app.listen(PORT || 3000, () => {
   console.log(`Server is running on port ${PORT} at http://localhost:${PORT}`);
 });
 
-const Stripe = stripe(process.env.STRIPE_SECRET_KEY);
+const Stripe = process.env.STRIPE_SECRET_KEY
+  ? stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
 
 export { cloudinary, Stripe, v2 };

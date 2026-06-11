@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ECOM_API_BASE_URL } from "../../config/api";
 
 export const appApi = createApi({
   reducerPath: "appApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api/ecom" }),
+  baseQuery: fetchBaseQuery({ baseUrl: ECOM_API_BASE_URL }),
   endpoints: (builder) => ({
     signup: builder.mutation({
       query: (user) => ({
